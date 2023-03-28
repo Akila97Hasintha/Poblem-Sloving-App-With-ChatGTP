@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:chat_gtp_app/constraints/constant.dart';
 import 'package:chat_gtp_app/widgets/Chat_widget.dart';
 import 'package:chat_gtp_app/services/services.dart';
-
+import 'package:chat_gtp_app/services/api_services.dart';
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
@@ -78,7 +78,13 @@ class _ChatScreenState extends State<ChatScreen> {
                             hintStyle: TextStyle(color: Colors.grey)),
                         ),
                       ),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.send,color:Colors.white))
+                      IconButton(onPressed: () async {
+                        try{
+                          await ApiService.getModels();
+                        }catch(error){
+                          print(error);
+                        }
+                      }, icon: const Icon(Icons.send,color:Colors.white))
                     ],
                   ),
                 ),

@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:chat_gtp_app/constraints/constant.dart';
+import 'package:chat_gtp_app/widgets/Chat_widget.dart';
+import 'package:chat_gtp_app/services/services.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -33,16 +36,22 @@ class _ChatScreenState extends State<ChatScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Image.asset('assets/openai_logo.jpg'),
         ),title: const Text('ChatGtp'),
-        actions: [IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_rounded,color:Colors.white))],
+        actions: [IconButton(onPressed:  () async {
+
+              await Services.showModelSheet(context: context);
+        }, icon: const Icon(Icons.more_vert_rounded,color:Colors.white))],
       ),
       body: SafeArea(
         child: Column(
           children: [
             Flexible(
               child: ListView.builder(
-                itemCount: 6,
+                itemCount: 4,
                   itemBuilder: (context,index) {
-                    return const Text("hello this is text!!");
+                    return  ChatWidget(
+                      msg: chatMessage[index]['msg'].toString(),
+                      chatIndex: int.parse(chatMessage[index]['chatIndex'].toString()),
+                    );
                   }),
             ),
             if(_isTyping)...[

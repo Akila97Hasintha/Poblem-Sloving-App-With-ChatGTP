@@ -1,6 +1,8 @@
 import 'package:chat_gtp_app/models/models_model.dart';
+import 'package:chat_gtp_app/provider/modelProvider.dart';
 import 'package:chat_gtp_app/services/api_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 //import 'package:chat_gtp_app/constraints/constant.dart';
 import '../constraints/constant.dart';
  class ModelDrop extends StatefulWidget {
@@ -11,11 +13,13 @@ import '../constraints/constant.dart';
  }
 
  class _ModelDropState extends State<ModelDrop> {
-   String currentModel = "text-davinci:001";
+   String? currentModel;
    @override
    Widget build(BuildContext context) {
+     final modelsProvider = Provider.of<ModelsProvider>(context,listen:false);
+     currentModel = modelsProvider.getCurrentModel;
      return FutureBuilder<List<ModelsModel>>(
-       future: ApiService.getModels(),
+       future: modelsProvider.getAllModels() ,
          builder: (context , snapshot){
          if(snapshot.hasError) {
            return Center(
@@ -37,6 +41,7 @@ import '../constraints/constant.dart';
                setState(() {
                  currentModel =value.toString();
                });
+               modelsProvider.setCurrentModel(value.toString());
              });
          }
      );

@@ -24,21 +24,21 @@ Color cardColor = const Color(0xff4444654);
 //
 // }
 
-final chatMessage = [
-  {
-    "msg":"hello who are  you",
-    "chatIndex":0,
-  },
-  {
-    "msg":"hello I am Chat gtp",
-    "chatIndex":1,
-  },
-  {
-    "msg":"What is flutter",
-    "chatIndex":0,
-  },
-  {
-    "msg":"Flutter is an opren-source mobile application development framework created by Google",
-    "chatIndex":1,
-  },
-];
+// final chatMessage = [
+//   {
+//     "msg":"hello who are  you",
+//     "chatIndex":0,
+//   },
+//   {
+//     "msg":"hello I am Chat gtp",
+//     "chatIndex":1,
+//   },
+//   {
+//     "msg":"What is flutter",
+//     "chatIndex":0,
+//   },
+//   {
+//     "msg":"Flutter is an opren-source mobile application development framework created by Google",
+//     "chatIndex":1,
+//   },
+// ];
